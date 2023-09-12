@@ -19,7 +19,7 @@ class BotCreateResponse(BotType):
 class ChannelType(BaseModel):
     """Model for a channel"""
 
-    bot_uuid: str
+    bot_uuid: uuid.UUID
     channel_id: int
     channel_name: str
 
@@ -27,4 +27,4 @@ class ChannelType(BaseModel):
 class ChannelCreateResponse(ChannelType):
     """Model for response on channel creation"""
 
-    internal_id: str
+    internal_id: uuid.UUID

@@ -11,6 +11,6 @@ class Bot(Model):
 
 class Channel(Model):
     internal_id = fields.UUIDField(pk=True)
-    bot_uuid = fields.UUIDField()
+    bot = fields.ForeignKeyField("models.Bot", related_name="channels")
     channel_id = fields.IntField()
     channel_name = fields.CharField(max_length=32)

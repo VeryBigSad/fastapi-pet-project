@@ -11,9 +11,9 @@ async def upgrade(db: BaseDBAsyncClient) -> str:
 );
 CREATE TABLE IF NOT EXISTS "channel" (
     "internal_id" CHAR(36) NOT NULL  PRIMARY KEY,
-    "bot_uuid" CHAR(36) NOT NULL,
     "channel_id" INT NOT NULL,
-    "channel_name" VARCHAR(32) NOT NULL
+    "channel_name" VARCHAR(32) NOT NULL,
+    "bot_id" CHAR(36) NOT NULL REFERENCES "bot" ("internal_id") ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS "aerich" (
     "id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
