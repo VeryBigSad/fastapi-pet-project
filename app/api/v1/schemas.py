@@ -1,7 +1,8 @@
+import uuid
 from pydantic import BaseModel
 
 
-class BotCreate(BaseModel):
+class BotType(BaseModel):
     """Model for a bot"""
 
     token: str
@@ -9,13 +10,13 @@ class BotCreate(BaseModel):
     tmp_chat_id: int
 
 
-class BotResponse(BotCreate):
+class BotCreateResponse(BotType):
     """Model for response on bot creation"""
 
-    internal_id: str
+    internal_id: uuid.UUID
 
 
-class ChannelCreate(BaseModel):
+class ChannelType(BaseModel):
     """Model for a channel"""
 
     bot_uuid: str
@@ -23,7 +24,7 @@ class ChannelCreate(BaseModel):
     channel_name: str
 
 
-class ChannelResponse(ChannelCreate):
+class ChannelCreateResponse(ChannelType):
     """Model for response on channel creation"""
 
     internal_id: str
