@@ -24,7 +24,7 @@ async def get_bot(internal_id: str):
 
 @router.put("/bot/{internal_id}", response_model=BotCreateResponse)
 @atomic()
-async def update_bot(internal_id: str, bot_data: BotCreateResponse):
+async def update_bot(internal_id: str, bot_data: BotType):
     bot = await Bot.get_or_none(internal_id=internal_id)
     if not bot:
         raise HTTPException(status_code=404, detail="Bot not found")
