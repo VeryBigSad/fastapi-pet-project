@@ -1,4 +1,4 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException
 from tortoise.transactions import atomic
 
 from app.api.v1.schemas import ChannelType, ChannelCreateResponse
