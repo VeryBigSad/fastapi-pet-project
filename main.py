@@ -4,6 +4,7 @@ from tortoise.contrib.fastapi import register_tortoise
 from app.api.v1.bot import router as bot_router
 from app.api.v1.channel import router as channel_router
 from app.db.config import TORTOISE_ORM
+from config import IS_DEBUG
 from middlewares.authorization import authorization_middleware
 
 app = FastAPI()
@@ -26,4 +27,4 @@ if __name__ == "__main__":
     import uvicorn
 
     # Run the ASGI server using UVicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=9176, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=9176, reload=IS_DEBUG)
