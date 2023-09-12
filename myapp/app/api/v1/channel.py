@@ -29,7 +29,7 @@ async def update_channel(internal_id: str, channel_data: ChannelCreate):
     if not channel:
         raise HTTPException(status_code=404, detail="Channel not found")
 
-    for attr, value in channel_data.dict().items():
+    for attr, value in channel_data.model_dump().items():
         setattr(channel, attr, value)
 
     await channel.save()

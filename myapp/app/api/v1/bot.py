@@ -6,11 +6,13 @@ from app.db.models import Bot
 
 router = APIRouter()
 
+
 @router.post("/bot", response_model=BotResponse)
 @atomic()
 async def add_bot(bot_data: BotCreate):
-    bot = await Bot.create(**bot_data.dict())
+    bot = await Bot.create(**bot_data.model_dump())
     return bot
+
 
 @router.get("/bot/{internal_id}", response_model=BotResponse)
 async def get_bot(internal_id: str):
@@ -27,10 +29,9 @@ async def update_bot(internal_id: str, bot_data: BotCreate):
     if not bot:
         raise HTTPException(status_code=404, detail="Bot not found")
 
-    # Update bot attributes
-    for attr, value in bot_data.dict().items():
+    for attr, value in bot_data.model_dump().items():
         setattr(bot, attr, value)
-    
+
     await bot.save()
-    
+
     return bot
